@@ -61,6 +61,19 @@ public class CASBA23045 {
         
         
         
+        //second name can be letters and/or numbers
+        
+        
+        
+        
+        //number of classes must be an integer value between 1 and 8
+        
+        
+        
+        //Studant number must follow the specified rules "first 2 characters being numbers, the 3rd  and 4th characters
+        //(and possibly 5th ) being a letter, and everything after the last letter character being a number"
+        
+        
         
         
         
