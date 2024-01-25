@@ -4,6 +4,10 @@
  */
 package ca.sba23045;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -32,7 +36,7 @@ public class CASBA23045 {
             
     }
 
-    private static void verifiedStudentFromFile() {
+    private static void verifiedStudentFromFile() throws FileNotFoundException, IOException {
         try (BufferedReader br = new BufferedReader (new FileReader("students.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -41,13 +45,31 @@ public class CASBA23045 {
                 int numClasses = Integer.parseInt(br.readLine().trim());
                 String studentID = br.readLine().trim();
                 
+                if (isValidData(firstName, secondName, numClasses, studentID)) {
+                    writeToStatusFile(studentID, secondName, studentWorkload(numClasses));
+                } else {
+                    System.out.println("Invalid Data for Studant: " firstName + " " + secondName);
+                }
             }
+        } catch (Exception e) {
+            System.out.println("Verifed Studantes from the File");
         }
-        }
-
-    private static void addDataToStatusFile() {
+    }
+    
+    public static boolean isValidData(String firstName, String secondName, int numClasses, String studentID) {
+        //first name must be letters only;
+        
+        
+        
+        
+        
+        
+     
+    public static void addDataToStatusFile() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+}
+    
     }
  
 
