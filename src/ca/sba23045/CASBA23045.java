@@ -4,6 +4,8 @@
  */
 package ca.sba23045;
 
+import java.util.Scanner;
+
 /**
  *
  * @author User
@@ -14,7 +16,11 @@ public class CASBA23045 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+    try (Scanner scanner = new Scanner(System.in)) {
+        System.out.println("1. Standard Operation");
+        
+        
+    }
     }
     
 }
