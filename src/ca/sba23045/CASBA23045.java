@@ -5,9 +5,9 @@
 package ca.sba23045;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -19,7 +19,8 @@ public class CASBA23045 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    
+public static void main(String[] args) {
     try (Scanner scanner = new Scanner(System.in)) {
         System.out.println("1. Standard Operation");
         System.out.println("2. Add Data to Status.txt");
@@ -34,23 +35,23 @@ public class CASBA23045 {
     }
 }
 
-    private static void verifiedStudentsFromFile() throws FileNotFoundException, IOException {
-        try (BufferedReader br = new BufferedReader (new FileReader("students.txt"))) {
+    public static void verifiedStudentsFromFile() {
+        try (BufferedReader br = new BufferedReader(new FileReader("students.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String firstName = line.trim();
-                String secondName = line.trim();
+                String secondName = br.readLine().trim();
                 int numClasses = Integer.parseInt(br.readLine().trim());
                 String studentID = br.readLine().trim();
                 
                 if (isValidData(firstName, secondName, numClasses, studentID)) {
                     writeToStatusFile(studentID, secondName, studentWorkload(numClasses));
                 } else {
-                    System.out.println("Invalid Data for Studant: " firstName + " " + secondName);
+                    System.out.println("Invalid Data for Student: " + firstName + " " + secondName);
                 }
             }
         } catch (Exception e) {
-            System.out.println("Verifed Studantes from the File");
+            System.out.println("Verified Students from the File");
         }
     }
     
@@ -81,7 +82,7 @@ public class CASBA23045 {
         return true;
     }
     
-    public static String StudentWorkload(int numClasses) {
+    public static String studentWorkload(int numClasses) {
         if (numClasses == 1) {
             return "Very Light";
         } else if (numClasses == 2) {
@@ -89,7 +90,17 @@ public class CASBA23045 {
         } else if (numClasses >= 3 && numClasses <=5) {
             return "Part Time";
         } else {
-            return "Full TIme";
+            return "Full Time";
+        }
+    }
+    
+    public void writeToStatusFile(String studentID, String secondName, String workload) {
+        try (PrintWriter pw = new PrintWriter(new FileWriter("status.txt", true))) {
+            pw.println(studentID + " - " + secondName);
+            pw.println(workload);
+            pw.println(); //Add empty line for better reading.
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
         
