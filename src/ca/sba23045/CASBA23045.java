@@ -58,21 +58,30 @@ public class CASBA23045 {
     
     public static boolean isValidData(String firstName, String secondName, int numClasses, String studentID) {
         //first name must be letters only;
-        
-        
-        
+        if (!firstName.matches("[a-zA-Z]+")) {
+            System.out.println("Invalid Data: First name must contain letters only!");
+            return false;
+        }
+       
         //second name can be letters and/or numbers
-        
-        
-        
+        if (!secondName.matches("[a-zA-Z0-9]+")) {
+            System.out.println("Invalid Data: Second name must contain letters and/or numbers!");
+            return false;
+        }
         
         //number of classes must be an integer value between 1 and 8
+        if (numClasses < 1 || numClasses > 8) {
+            System.out.println("Invalid Data: Number of Classes must be between 1 and 8!");
+            return false;
+        }
         
-        
-        
-        //Studant number must follow the specified rules "first 2 characters being numbers, the 3rd  and 4th characters
-        //(and possibly 5th ) being a letter, and everything after the last letter character being a number"
-        
+        //Studant number must follow the specified pattern
+        if (studentID.matches("\\d{2}[a-zA-Z]{2,5}\\d+")) {
+            System.out.println("Invalid Data: Invalid Student ID format!");
+            return false;
+        }
+        return true;
+    }
         
         
         
