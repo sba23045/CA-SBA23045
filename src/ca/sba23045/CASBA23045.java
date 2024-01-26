@@ -27,16 +27,14 @@ public class CASBA23045 {
         int choice = scanner.nextInt();
         
         switch (choice) {
-            case 1 : verifiedStudentFromFile();
+            case 1 : verifiedStudentsFromFile();
             case 2 : addDataToStatusFile();
             default : System.out.println ("Invalid choice. Exist choices 1 or 2");
         }
     }
-                
-            
-    }
+}
 
-    private static void verifiedStudentFromFile() throws FileNotFoundException, IOException {
+    private static void verifiedStudentsFromFile() throws FileNotFoundException, IOException {
         try (BufferedReader br = new BufferedReader (new FileReader("students.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -82,12 +80,27 @@ public class CASBA23045 {
         }
         return true;
     }
-        
+    
+    public static String StudentWorkload(int numClasses) {
+        if (numClasses == 1) {
+            return "Very Light";
+        } else if (numClasses == 2) {
+            return "Light";
+        } else if (numClasses >= 3 && numClasses <=5) {
+            return "Part Time";
+        } else {
+            return "Full TIme";
+        }
+    }
         
         
         
      
     public static void addDataToStatusFile() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private static void verifiedStudentsFromFile() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
