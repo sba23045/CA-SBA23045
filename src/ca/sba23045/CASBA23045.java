@@ -45,7 +45,7 @@ public static void main(String[] args) {
                 String studentID = br.readLine().trim();
                 
                 if (isValidData(firstName, secondName, numClasses, studentID)) {
-                    writeToStatusFile(studentID, secondName, studentWorkload(numClasses));
+                    WriteToStatusFile(studentID, secondName, studentWorkload(numClasses));
                 } else {
                     System.out.println("Invalid Data for Student: " + firstName + " " + secondName);
                 }
@@ -81,6 +81,16 @@ public static void main(String[] args) {
         }
         return true;
     }
+
+    private static void WriteToStatusFile(String studentID, String secondName, String studentWorkload) {
+         try (PrintWriter pw = new PrintWriter(new FileWriter("status.txt", true))) {
+            pw.println(studentID + " - " + secondName);
+            pw.println(studentWorkload);
+            pw.println(); //Add empty line for better reading.
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
     
     public static String studentWorkload(int numClasses) {
         if (numClasses == 1) {
@@ -93,29 +103,28 @@ public static void main(String[] args) {
             return "Full Time";
         }
     }
-    
-    public void writeToStatusFile(String studentID, String secondName, String workload) {
-        try (PrintWriter pw = new PrintWriter(new FileWriter("status.txt", true))) {
-            pw.println(studentID + " - " + secondName);
-            pw.println(workload);
-            pw.println(); //Add empty line for better reading.
+   
+    public static void addDataToStatusFile() {
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.print("Enter Fist Name: ");
+            String firstName = scanner.nextLine();
+            
+            System.out.print("Enter Second Name: ");
+            String secondName = scanner.nextLine();
+            
+            System.out.print("Enter Number of Class: ");
+            int numClasses = scanner.nextInt();
+            
+            System.out.print("Enter Student ID: ");
+            String studentID = scanner.next();
+            
+            if (isValidData(firstName, secondName, numClasses, studentID)) {
+                WriteToStatusFile(studentID, secondName, studentWorkload(numClasses));
+                System.out.println("Data added to status.txt sucessfully.");
+            } else {
+                System.out.println("Invalid data. Data not added to status.txt.");
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }
-        
-        
-        
-     
-    public static void addDataToStatusFile() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    private static void verifiedStudentsFromFile() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-}
-    
-    }
- 
-
+    }}
