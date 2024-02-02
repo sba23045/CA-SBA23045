@@ -28,18 +28,19 @@ public static void main(String[] args) {
         int choice = scanner.nextInt();
         
         switch (choice) {
-            case 1 : verifiedStudentsFromFile();
-            case 2 : addDataToStatusFile();
-            default : System.out.println ("Invalid choice. Exist choices 1 or 2");
+            case 1: verifiedStudentsFromFile();
+                break;
+            case 2: addDataToStatusFile();
+                break;
+            default: System.out.println("Invalid choice. Exist choices 1 or 2");
         }
     }
 }
 
     public static void verifiedStudentsFromFile() {
         try (BufferedReader br = new BufferedReader(new FileReader("students.txt"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String firstName = line.trim();
+            while ((br.readLine()) != null) {
+                String firstName = br.readLine().trim();
                 String secondName = br.readLine().trim();
                 int numClasses = Integer.parseInt(br.readLine().trim());
                 String studentID = br.readLine().trim();
@@ -75,7 +76,7 @@ public static void main(String[] args) {
         }
         
         //Studant number must follow the specified pattern
-        if (studentID.matches("\\d{2}[a-zA-Z]{2,5}\\d+")) {
+        if (studentID.matches("\\d{2}[a-zA-Z]{1,2}\\d+")) {
             System.out.println("Invalid Data: Invalid Student ID format!");
             return false;
         }
