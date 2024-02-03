@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
- *
+ *GITHUB: 
  * @author User
  */
 public class CASBA23045 {
@@ -28,15 +28,13 @@ public static void main(String[] args) {
         int choice = scanner.nextInt();
         
         switch (choice) {
-            case 1: verifiedStudentsFromFile();
-                break;
-            case 2: addDataToStatusFile();
-                break;
-            default: System.out.println("Invalid choice. Exist choices 1 or 2");
+            case 1 -> verifiedStudentsFromFile();
+            case 2 -> addDataToStatusFile();
+            default -> System.out.println("Invalid choice. Exist choices 1 or 2");
         }
     }
 }
-
+    //Method to verified, validating and process de user from the file:
     public static void verifiedStudentsFromFile() {
         try (BufferedReader br = new BufferedReader(new FileReader("students.txt"))) {
             while ((br.readLine()) != null) {
@@ -56,6 +54,7 @@ public static void main(String[] args) {
         }
     }
     
+    //Method to check if the validation of informatation from the data:
     public static boolean isValidData(String firstName, String secondName, int numClasses, String studentID) {
         //first name must be letters only;
         if (!firstName.matches("[a-zA-Z]+")) {
@@ -63,13 +62,13 @@ public static void main(String[] args) {
             return false;
         }
        
-        //second name can be letters and/or numbers
+        //Second name can be letters and/or numbers
         if (!secondName.matches("[a-zA-Z0-9]+")) {
-            System.out.println("Invalid Data: Second name must contain letters and/or numbers!");
+            System.out.println("Invalid Data: Second name must contain letters and/or numbers only!");
             return false;
         }
         
-        //number of classes must be an integer value between 1 and 8
+        //number of classes must be an integer value between 1 and 8:
         if (numClasses < 1 || numClasses > 8) {
             System.out.println("Invalid Data: Number of Classes must be between 1 and 8!");
             return false;
@@ -83,6 +82,7 @@ public static void main(String[] args) {
         return true;
     }
 
+    //Method to write student data to the Status file:
     private static void WriteToStatusFile(String studentID, String secondName, String studentWorkload) {
          try (PrintWriter pw = new PrintWriter(new FileWriter("status.txt", true))) {
             pw.println(studentID + " - " + secondName);
@@ -93,6 +93,7 @@ public static void main(String[] args) {
         }
     }
     
+    //Method to determine student workload, base on the number of classes
     public static String studentWorkload(int numClasses) {
         if (numClasses == 1) {
             return "Very Light";
@@ -105,6 +106,7 @@ public static void main(String[] args) {
         }
     }
    
+    //Method to add new student data to the Status: file:
     public static void addDataToStatusFile() {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("Enter Fist Name: ");
@@ -128,4 +130,5 @@ public static void main(String[] args) {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }}
+    }
+}
