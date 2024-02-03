@@ -11,7 +11,8 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
- *GITHUB: 
+ *GITHUB link: https://github.com/sba23045/CA-SBA23045/blob/main/src/ca/sba23045/CASBA23045.java
+ * 
  * @author User
  */
 public class CASBA23045 {
@@ -106,7 +107,7 @@ public static void main(String[] args) {
         }
     }
    
-    //Method to add new student data to the Status: file:
+    //Method to add new student data to the Status file:
     public static void addDataToStatusFile() {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("Enter Fist Name: ");
